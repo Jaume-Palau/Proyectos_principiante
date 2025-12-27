@@ -9,6 +9,11 @@
 -ul, ol, li → listas
 -div → contenedor genérico
 -span → contenedor en línea
+-blockquote → citas largas
+-cite → origen de la cita
+-code → código literal
+-strong → importancia
+-em → énfasis
 
 ## Atajos útiles de Emmet (HTML)
 
