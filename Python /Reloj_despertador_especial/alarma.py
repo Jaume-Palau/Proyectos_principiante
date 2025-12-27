@@ -6,7 +6,7 @@ import os
 import random
 import webbrowser
 from time import sleep
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 '''DATA BASE URL'''
 
@@ -34,6 +34,10 @@ def introducir_alarma()-> object:
         sys.exit(1)
 
     alarma_usuario = datetime.combine(date.today(),hora_objeto) #Formato datetime: 2025-12-26 07:30:00
+
+    if alarma_usuario <= datetime.now():
+        alarma_usuario += timedelta(days=1)
+        print(f'La alarma sonará mañana a las {hora_objeto}')
 
     return alarma_usuario
 
