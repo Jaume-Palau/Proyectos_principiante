@@ -7,19 +7,19 @@ https://github.com/h5bp/html5-boilerplate#quick-start
 
 ## Etiquetas básicas:
 
--h1 a h6 → títulos
--p → párrafos
--a → enlaces
--img → imágenes
--ul, ol, li → listas
--div → contenedor genérico
--span → contenedor en línea
--blockquote → citas largas
--cite → origen de la cita
--code → código literal
--strong → importancia
--em → énfasis
--br → salto de linea
+- h1 a h6 → títulos
+- p → párrafos
+- a → enlaces
+- img → imágenes
+- ul, ol, li → listas
+- div → contenedor genérico
+- span → contenedor en línea
+- blockquote → citas largas
+- cite → origen de la cita
+- code → código literal
+- strong → importancia
+- em → énfasis
+- br → salto de linea
 
 ## Atajos útiles de Emmet (HTML)
 
