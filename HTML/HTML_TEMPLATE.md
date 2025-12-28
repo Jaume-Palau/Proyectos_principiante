@@ -1,9 +1,9 @@
 # Este es un documento para tener una platilla de lo básico.
 
 ## Webs de plantillas:
-https://www.w3schools.com/html/default.asp
-https://htmlboilerplates.com/
-https://github.com/h5bp/html5-boilerplate#quick-start
+- https://www.w3schools.com/html/default.asp
+- https://htmlboilerplates.com/
+- https://github.com/h5bp/html5-boilerplate#quick-start
 
 ## Etiquetas básicas:
 
@@ -28,15 +28,15 @@ https://github.com/h5bp/html5-boilerplate#quick-start
 → Genera la estructura HTML5 completa
 
 ### Etiquetas básicas
-div
-p
-h1
-section
+- div
+- p
+- h1
+- section
 → Crea la etiqueta correspondiente
 
 ### Clases e IDs
-div.container
-#main
+- div.container
+- #main
 
 <div class="container"></div>
 <div id="main"></div>
@@ -54,8 +54,8 @@ li*5
 p{Hola mundo}
 
 ### Atributos
-a[href="#"]
-img[src="img.jpg" alt="imagen"]
+- a[href="#"]
+- img[src="img.jpg" alt="imagen"]
 
 ### Estructura típica de página
 header>nav+main+footer
