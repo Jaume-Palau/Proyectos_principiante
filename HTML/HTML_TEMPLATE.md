@@ -1,5 +1,10 @@
 # Este es un documento para tener una platilla de lo básico.
 
+## Webs de plantillas:
+https://www.w3schools.com/html/default.asp
+https://htmlboilerplates.com/
+https://github.com/h5bp/html5-boilerplate#quick-start
+
 ## Etiquetas básicas:
 
 -h1 a h6 → títulos
@@ -14,6 +19,7 @@
 -code → código literal
 -strong → importancia
 -em → énfasis
+-br → salto de linea
 
 ## Atajos útiles de Emmet (HTML)
 
