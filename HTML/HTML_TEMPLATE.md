@@ -21,18 +21,41 @@
 - em → énfasis
 - br → salto de linea
 
+## Etiquetas semánticas de estructura:
+
+- article → Define partes con suficiente imoprtancia como para considerarse una   
+entidad destacable con informafion a su alrededor
+
+- nav → Lista de enlaces que normalmente sera el menu de navegacion de la web
+
+- header → Zona común de la parte superior de nuestra web
+
+- footer → Zona común de la parte inferior de nuestra web
+
+- section → Para agrupar unaseccion de nuestro documento web
+
+- main → Para agrupar el conjunto de contenido de nuestra pagina
+
+- aside → Lo opuesto a main, para agrupar lo mas irrelevante
+
+
+## Etiquetas semámticas de texto:
+
+Dan relevancia a partes de texto, sirven para el SEO y Accesibilidad. Normalmente son etiquetas de línea
+
+- strong → Dar mas relevancia al texto
+
+- em → Dar mas énfasis a partes del texto
+
+- time → Marcar fechas o horas
+
+- address → Indicar la forma de contacto o dirección 
+
 ## Atajos útiles de Emmet (HTML)
 
 ### Plantilla base
 !
 → Genera la estructura HTML5 completa
-
-### Etiquetas básicas
-- div
-- p
-- h1
-- section
-→ Crea la etiqueta correspondiente
 
 ### Clases e IDs
 - div.container
