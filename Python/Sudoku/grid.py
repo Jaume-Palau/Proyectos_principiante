@@ -59,8 +59,8 @@ class Grid:
     def __init__(self,font):
 
         self.cell_size = 100
-        self.x_offset = 35 # Ajustar la posicion de los numeros
-        self.y_offset = 20 # Ajustar la posicion de los numeros
+        self.x_offset = 30 # Ajustar la posicion de los numeros
+        self.y_offset = 17 # Ajustar la posicion de los numeros
         self.line_coordinates = create_line_coordinates(self.cell_size)
         self.grid = create_grid(SUB_GRID_SIZE)
         self.game_font = font 
@@ -68,7 +68,7 @@ class Grid:
         self.occupied_cell_coordinates = self.pre_occupied_cell() # Guardar coordenadas de las celdas ocupadas
         self.number_selection = NumberSelection(self.game_font)
 
-        self.user_inserted_cell = set()
+        #self.user_inserted_cell = set()
 
     def is_cell_preocupied(self, x: int, y: int) -> bool:
         """Comprueba si la celda esta en la lista de las ocupadas"""
@@ -107,13 +107,17 @@ class Grid:
 
         for y in range(len(self.grid)):
             for x in range(len(self.grid[y])):
-                if self.get_cell(x,y) != 0:
-                    text_surface = self.game_font.render(str(self.get_cell(x,y)),False,pg.Color('white'))
-                    surface.blit(text_surface,(self.x_offset + x * self.cell_size, self.y_offset + y * self.cell_size))
 
-                if (y,x) in self.user_inserted_cell:
-                    text_surface = self.game_font.render(str(self.get_cell(x,y)),False,pg.Color('green'))
+                if self.get_cell(x,y) != 0:
+                    if (y,x) in self.occupied_cell_coordinates:
+                        text_surface = self.game_font.render(str(self.get_cell(x,y)),False,pg.Color('white'))
+                    else:
+                        text_surface = self.game_font.render(str(self.get_cell(x,y)),False,pg.Color('green'))
                     surface.blit(text_surface,(self.x_offset + x * self.cell_size, self.y_offset + y * self.cell_size))
+                    
+                # if (y,x) in self.user_inserted_cell:
+                #     text_surface = self.game_font.render(str(self.get_cell(x,y)),False,pg.Color('green'))
+                #     surface.blit(text_surface,(self.x_offset + x * self.cell_size, self.y_offset + y * self.cell_size))
 
 
     def draw_all(self,pyg,surface):
@@ -141,7 +145,7 @@ class Grid:
 
     def set_cell(self, x: int, y: int, value: int)-> None:
         """Dar un valor a la celda de las coordenadas(y,x)"""
-        self.user_inserted_cell.add((y,x)) # Guarda las coordenadas de la celda que clica el usuario
+        #self.user_inserted_cell.add((y,x)) # Guarda las coordenadas de la celda que clica el usuario
         self.grid[y][x] = value
         self.number_selection.selected_number = None
 

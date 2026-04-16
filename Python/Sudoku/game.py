@@ -33,6 +33,7 @@ grid = Grid(game_font)
 running = True
 
 while running:
+    surface.fill('black')
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT: # El usuario clica X para cerrar ventana
