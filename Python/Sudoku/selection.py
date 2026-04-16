@@ -39,19 +39,24 @@ class NumberSelection:
                 
                 text_surface = self.font.render(str(self.number_list[index]),False,self.normal_color)
             
+            if self.selected_number is not None:
+                if self.selected_number -1 == index:
+                    pg.draw.rect(surface,self.selected_color,(pos[0],pos[1],self.btn_w,self.btn_h)
+                                , width=1, border_radius=10)
+                    
+                    text_surface = self.font.render(str(self.number_list[index]),False,self.selected_color)    
+
             surface.blit(text_surface,(pos[0]+self.off_setx,pos[1]+self.off_sety))
 
     
-    def get_clicked_number(self, mouse_x: int, mouse_y: int)-> None:
+    def get_clicked_number(self, mouse_x: int, mouse_y: int):
         """Obtener numero del boton"""
 
         for index, pos in enumerate(self.btn_coordinates):
 
             if self.on_button(mouse_x,mouse_y,pos):
-                return index + 1
+                self.selected_number = index + 1
         
-        return None
-    
 
     def on_button(self, mouse_x: int, mouse_y: int, pos: tuple)-> bool:
         """Returns True if the given coordinates are inside the button"""

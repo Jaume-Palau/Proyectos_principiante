@@ -86,6 +86,8 @@ class Grid:
             if not self.is_cell_preocupied(grid_x,grid_y):
                 if self.number_selection.selected_number is not None:
                  self.set_cell(grid_x,grid_y,self.number_selection.selected_number)
+        
+        self.number_selection.get_clicked_number(x,y)
 
 
     def _draw_lines(self,pg,surface) -> None:
@@ -135,6 +137,7 @@ class Grid:
         """Dar un valor a la celda de las coordenadas(y,x)"""
 
         self.grid[y][x] = value
+        self.number_selection.selected_number = None
 
     def show(self):
         """Muestra los numeros"""
