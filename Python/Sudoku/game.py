@@ -43,7 +43,7 @@ while running:
                 pos = pygame.mouse.get_pos()
                 grid.get_mouse_click(pos[0],pos[1])
 
-                grid.selected_number = grid.number_selection.get_clicked_number(pos[0],pos[1])
+                grid.number_selection.selected_number = grid.number_selection.get_clicked_number(pos[0],pos[1])
 
     grid.draw_all(pygame,surface)
 

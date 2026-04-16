@@ -17,6 +17,7 @@ class NumberSelection:
                                 (950, 350), (1050, 350),
                                 (1050, 450)]
         self.number_list = list(range(1,10))
+        self.selected_number = None
 
 
     def draw(self,surface) -> None:
@@ -25,23 +26,23 @@ class NumberSelection:
         for index, pos in enumerate(self.btn_coordinates):
 
             if self.button_hover(pos):
+
                 pg.draw.rect(surface,self.selected_color,(pos[0],pos[1],self.btn_w,self.btn_h)
-                            , width=1, border_radius=1)
+                            , width=1, border_radius=10)
                 
-                text_surface = self.font.render(str(self.number_list[index]),False,self.selected_color)
-                
+                text_surface = self.font.render(str(self.number_list[index]),False,self.selected_color)   
             
             else:
 
                 pg.draw.rect(surface,self.normal_color,(pos[0],pos[1],self.btn_w,self.btn_h)
-                            , width=1, border_radius=1)
+                            , width=1, border_radius=10)
                 
                 text_surface = self.font.render(str(self.number_list[index]),False,self.normal_color)
             
             surface.blit(text_surface,(pos[0]+self.off_setx,pos[1]+self.off_sety))
 
     
-    def get_clicked_number(self, mouse_x: int, mouse_y: int):
+    def get_clicked_number(self, mouse_x: int, mouse_y: int)-> None:
         """Obtener numero del boton"""
 
         for index, pos in enumerate(self.btn_coordinates):

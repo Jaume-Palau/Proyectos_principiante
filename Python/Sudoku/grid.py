@@ -67,7 +67,6 @@ class Grid:
         remove_numbers(self.grid) # Elimina los numeros de forma aleatoria
         self.occupied_cell_coordinates = self.pre_occupied_cell() # Guardar coordenadas de las celdas ocupadas
         self.number_selection = NumberSelection(self.game_font)
-        self.selected_number = None
 
     def is_cell_preocupied(self, x: int, y: int) -> bool:
         """Comprueba si la celda esta en la lista de las ocupadas"""
@@ -85,8 +84,8 @@ class Grid:
             grid_x, grid_y = x // 100, y // 100
 
             if not self.is_cell_preocupied(grid_x,grid_y):
-                if self.selected_number is not None:
-                 self.set_cell(grid_x,grid_y,self.selected_number)
+                if self.number_selection.selected_number is not None:
+                 self.set_cell(grid_x,grid_y,self.number_selection.selected_number)
 
 
     def _draw_lines(self,pg,surface) -> None:
