@@ -1,6 +1,7 @@
 import pygame as pg
 from random import sample
 from selection import NumberSelection
+from copy import deepcopy
 
 def create_line_coordinates(cell_size: int) -> list[list[tuple[int,int]]]:
     """Crea las coordenadas de las linias. Punto inicio y punto final para luego dibujarlas"""
@@ -63,6 +64,7 @@ class Grid:
         self.y_offset = 17 # Ajustar la posicion de los numeros
         self.line_coordinates = create_line_coordinates(self.cell_size)
         self.grid = create_grid(SUB_GRID_SIZE)
+        self.grid_test = deepcopy(self.grid)
         self.game_font = font 
         remove_numbers(self.grid) # Elimina los numeros de forma aleatoria
         self.occupied_cell_coordinates = self.pre_occupied_cell() # Guardar coordenadas de las celdas ocupadas
@@ -155,7 +157,20 @@ class Grid:
         for row in self.grid:
             print(row)
 
-    
+    def resolver_sudoku(self,surface)->None:
+
+        if all(0 not in row for row in self.grid):
+            for y in range(len(self.grid_test)):
+                for x in range(len(self.grid_test[y])):
+
+                    if self.grid[y][x] == self.grid_test[y][x]:
+                        text_surface = self.game_font.render(str(self.grid[y][x]),False,pg.Color('green'))
+                    else:
+                        text_surface = self.game_font.render(str(self.grid[y][x]),False,pg.Color('red'))
+
+                    surface.blit(text_surface,(self.x_offset + x * self.cell_size, self.y_offset + y * self.cell_size))    
+
+
 
 
 if __name__ == "__main__":
