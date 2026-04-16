@@ -21,17 +21,27 @@ class NumberSelection:
 
     def draw(self,surface) -> None:
         """Dibuja los botones de seleccion"""
+        (mouse_x,mouse_y) = pg.mouse.get_pos()
 
         for index, pos in enumerate(self.btn_coordinates):
 
-            pg.draw.rect(surface,self.normal_color,(pos[0],pos[1],self.btn_w,self.btn_h)
-                        , width=1, border_radius=1)
+            if self.on_button(mouse_x,mouse_y,pos):
+                pg.draw.rect(surface,self.selected_color,(pos[0],pos[1],self.btn_w,self.btn_h)
+                            , width=1, border_radius=1)
+                
+                text_surface = self.font.render(str(self.number_list[index]),False,self.selected_color)
+                surface.blit(text_surface,(pos[0]+self.off_setx,pos[1]+self.off_sety))
             
-            text_surface = self.font.render(str(self.number_list[index]),False,self.normal_color)
-            surface.blit(text_surface,(pos[0]+self.off_setx,pos[1]+self.off_sety))
+            else:
+
+                pg.draw.rect(surface,self.normal_color,(pos[0],pos[1],self.btn_w,self.btn_h)
+                            , width=1, border_radius=1)
+                
+                text_surface = self.font.render(str(self.number_list[index]),False,self.normal_color)
+                surface.blit(text_surface,(pos[0]+self.off_setx,pos[1]+self.off_sety))
 
     
-    def get_clicked_number(self,mouse_x: int, mouse_y: int):
+    def get_clicked_number(self, mouse_x: int, mouse_y: int):
         """Obtener numero del boton"""
 
         for index, (x,y) in enumerate(self.btn_coordinates):
@@ -40,6 +50,12 @@ class NumberSelection:
                 return index + 1
         
         return None
+    
+
+    def on_button(self, mouse_x: int, mouse_y: int, pos: tuple)-> bool:
+        """Returns True if mouse on button"""
+
+        return pos[0] < mouse_x < pos[0]+self.btn_w and pos[1] < mouse_y < pos[1]+self.btn_h
 
 
     
