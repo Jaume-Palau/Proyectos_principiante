@@ -1,5 +1,6 @@
 import pygame as pg
 from random import sample
+from selection import NumberSelection
 
 def create_line_coordinates(cell_size: int) -> list[list[tuple[int,int]]]:
     """Crea las coordenadas de las linias. Punto inicio y punto final para luego dibujarlas"""
@@ -65,7 +66,8 @@ class Grid:
         self.game_font = font 
         remove_numbers(self.grid) # Elimina los numeros de forma aleatoria
         self.occupied_cell_coordinates = self.pre_occupied_cell() # Guardar coordenadas de las celdas ocupadas
-    
+        self.number_selection = NumberSelection(self.game_font)
+        self.selected_number = None
 
     def is_cell_preocupied(self, x: int, y: int) -> bool:
         """Comprueba si la celda esta en la lista de las ocupadas"""
@@ -77,12 +79,14 @@ class Grid:
         return False
         
     def get_mouse_click(self, x: int, y: int)->None:
+        """Obtiene las coordenadas del click y si la celda esta vacia pone el num seleccionado"""
     
         if x < 900:
             grid_x, grid_y = x // 100, y // 100
 
             if not self.is_cell_preocupied(grid_x,grid_y):
-                self.set_cell(grid_x,grid_y,-1)
+                if self.selected_number is not None:
+                 self.set_cell(grid_x,grid_y,self.selected_number)
 
 
     def _draw_lines(self,pg,surface) -> None:
@@ -108,6 +112,7 @@ class Grid:
     def draw_all(self,pyg,surface):
         self._draw_lines(pyg,surface)
         self._draw_numbers(surface)
+        self.number_selection.draw(surface)
 
 
     def get_cell(self,x:int,y:int)-> int:
