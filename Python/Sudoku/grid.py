@@ -68,6 +68,8 @@ class Grid:
         self.occupied_cell_coordinates = self.pre_occupied_cell() # Guardar coordenadas de las celdas ocupadas
         self.number_selection = NumberSelection(self.game_font)
 
+        self.user_inserted_cell = set()
+
     def is_cell_preocupied(self, x: int, y: int) -> bool:
         """Comprueba si la celda esta en la lista de las ocupadas"""
 
@@ -109,6 +111,10 @@ class Grid:
                     text_surface = self.game_font.render(str(self.get_cell(x,y)),False,pg.Color('white'))
                     surface.blit(text_surface,(self.x_offset + x * self.cell_size, self.y_offset + y * self.cell_size))
 
+                if (y,x) in self.user_inserted_cell:
+                    text_surface = self.game_font.render(str(self.get_cell(x,y)),False,pg.Color('green'))
+                    surface.blit(text_surface,(self.x_offset + x * self.cell_size, self.y_offset + y * self.cell_size))
+
 
     def draw_all(self,pyg,surface):
         self._draw_lines(pyg,surface)
@@ -135,7 +141,7 @@ class Grid:
 
     def set_cell(self, x: int, y: int, value: int)-> None:
         """Dar un valor a la celda de las coordenadas(y,x)"""
-
+        self.user_inserted_cell.add((y,x)) # Guarda las coordenadas de la celda que clica el usuario
         self.grid[y][x] = value
         self.number_selection.selected_number = None
 
