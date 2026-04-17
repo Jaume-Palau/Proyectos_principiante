@@ -48,11 +48,11 @@ def create_grid(sub_grid: int) -> list[list]:
     return [[nums[pattern(r, c)] for c in cols] for r in rows]
 
 
-def remove_numbers(grid: list[list]) -> None:
+def remove_numbers(grid: list[list],empties = 0) -> None:
     '''Pone numeros a 0 al azar. La cantidad es empties'''
 
     n_cells = GRID_SIZE * GRID_SIZE
-    empties = 30 
+    #empties = 30 
     for i in sample(range(n_cells),empties):
         grid[i//GRID_SIZE][i%GRID_SIZE] = 0
 
@@ -72,7 +72,15 @@ class Grid:
         self.number_selection = NumberSelection(self.game_font)
         self.level_selection = LevelSelection()
 
-        #self.user_inserted_cell = set()
+
+    def new_level_game(self,empties):
+
+        self.grid = create_grid(SUB_GRID_SIZE)
+        self.grid_test = deepcopy(self.grid)
+        remove_numbers(self.grid,empties)
+        self.occupied_cell_coordinates = self.pre_occupied_cell()
+
+        
 
     def is_cell_preocupied(self, x: int, y: int) -> bool:
         """Comprueba si la celda esta en la lista de las ocupadas"""
@@ -118,11 +126,6 @@ class Grid:
                     else:
                         text_surface = self.game_font.render(str(self.get_cell(x,y)),False,pg.Color('green'))
                     surface.blit(text_surface,(self.x_offset + x * self.cell_size, self.y_offset + y * self.cell_size))
-                    
-                # if (y,x) in self.user_inserted_cell:
-                #     text_surface = self.game_font.render(str(self.get_cell(x,y)),False,pg.Color('green'))
-                #     surface.blit(text_surface,(self.x_offset + x * self.cell_size, self.y_offset + y * self.cell_size))
-
 
     def draw_all(self,pyg,surface):
         self._draw_lines(pyg,surface)
@@ -150,7 +153,7 @@ class Grid:
 
     def set_cell(self, x: int, y: int, value: int)-> None:
         """Dar un valor a la celda de las coordenadas(y,x)"""
-        #self.user_inserted_cell.add((y,x)) # Guarda las coordenadas de la celda que clica el usuario
+
         self.grid[y][x] = value
         self.number_selection.selected_number = None
 

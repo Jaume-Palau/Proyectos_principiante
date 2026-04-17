@@ -40,6 +40,8 @@ while running:
     surface.fill('black')
     grid.draw_all(pygame,surface)
 
+   
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT: # El usuario clica X para cerrar ventana
             running = False
@@ -47,12 +49,17 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if pygame.mouse.get_pressed()[0]:
                 pos = event.pos
+                level = grid.level_selection.get_level_button(pos)
+
+                if level is not None:
+                    grid.new_level_game(level)
 
                 # Recoger la posicion del click para resolver
                 if grid.number_selection.on_button(pos[0],pos[1],grid.number_selection.btn_resolution_coordinates,200,80):
-                    resolver = True
+                    resolver = True  
                 else:
                     grid.get_mouse_click(pos[0],pos[1])
+
     
     if resolver:
         grid.resolver_sudoku(surface)

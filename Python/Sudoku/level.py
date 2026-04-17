@@ -61,7 +61,7 @@ class LevelSelection:
                 text_surface = self.font.render(str(self.btn_string[index]),False,self.selection_color[index])
             
             elif self.button_hover(coord,self.size) and index == 2:
-                
+
                 pg.draw.rect(surface,self.selection_color[index],(coord[0],coord[1],self.size[0],self.size[1]),1,10)
                 text_surface = self.font.render(str(self.btn_string[index]),False,self.selection_color[index])
 
