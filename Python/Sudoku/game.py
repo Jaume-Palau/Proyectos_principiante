@@ -1,6 +1,7 @@
 import pygame
 import os
 from grid import Grid
+from level import LevelSelection
 
 pygame.init()
 
@@ -27,8 +28,9 @@ pygame.display.set_caption('Sudoku') #TITULO
 pygame.font.init()
 game_font = pygame.font.SysFont('Arial',70)
 
-# CREACION DEL GRID(REJILLA)
+# CREACION DEL GRID
 grid = Grid(game_font)
+
 
 running = True
 
@@ -44,7 +46,7 @@ while running:
         
         if event.type == pygame.MOUSEBUTTONDOWN:
             if pygame.mouse.get_pressed()[0]:
-                pos = pygame.mouse.get_pos()
+                pos = event.pos
 
                 # Recoger la posicion del click para resolver
                 if grid.number_selection.on_button(pos[0],pos[1],grid.number_selection.btn_resolution_coordinates,200,80):

@@ -1,6 +1,7 @@
 import pygame as pg
 from random import sample
 from selection import NumberSelection
+from level import LevelSelection
 from copy import deepcopy
 
 def create_line_coordinates(cell_size: int) -> list[list[tuple[int,int]]]:
@@ -69,6 +70,7 @@ class Grid:
         remove_numbers(self.grid) # Elimina los numeros de forma aleatoria
         self.occupied_cell_coordinates = self.pre_occupied_cell() # Guardar coordenadas de las celdas ocupadas
         self.number_selection = NumberSelection(self.game_font)
+        self.level_selection = LevelSelection()
 
         #self.user_inserted_cell = set()
 
@@ -126,6 +128,7 @@ class Grid:
         self._draw_lines(pyg,surface)
         self._draw_numbers(surface)
         self.number_selection.draw(surface)
+        self.level_selection.draw_buttons(surface)
 
 
     def get_cell(self,x:int,y:int)-> int:
